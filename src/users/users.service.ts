@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { User } from 'src/model/user.model';
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
+  private readonly users: User[] = [
     {
       name: 'John Cena',
       email: 'john@go.gov.sg',
@@ -17,6 +17,10 @@ export class UsersService {
   ];
 
   async findOne(password: string): Promise<User | undefined> {
-    return this.users.find(user => user.password === password);
+    const user = this.users.find(user => user.password === password);
+    if (!user) {
+      throw new ForbiddenException('User has no access to the page');
+    }
+    return user
   }
 }
