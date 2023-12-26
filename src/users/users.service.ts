@@ -19,7 +19,7 @@ export class UsersService {
   async findOne(password: string): Promise<User | undefined> {
     const user = this.users.find(user => user.password === password);
     if (!user) {
-      throw new ForbiddenException('User has no access to the page');
+      throw new ForbiddenException('User is unauthorised');
     }
     return user
   }
