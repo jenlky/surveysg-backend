@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { UserData } from 'src/model/user.model';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
@@ -8,5 +9,10 @@ export class LoginService {
   async auth({ password }): Promise<string> {
     const user = await this.usersService.findOne(password);
     return user.name
+  }
+
+  async register(userData: UserData): Promise<UserData> {
+    const result = await this.usersService.saveOne(userData);
+    return result
   }
 }

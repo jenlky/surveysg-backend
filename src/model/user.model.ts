@@ -4,3 +4,11 @@ export type User = {
   email: string,
   password: string
 };
+
+export type UserData = {
+  name: string,
+  email: string,
+  agency: string,
+  jobDescription: string
+  termsOfUse: boolean
+};
