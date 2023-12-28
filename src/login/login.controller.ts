@@ -1,4 +1,4 @@
-import { Body, Controller, Post, HttpCode } from '@nestjs/common';
+import { Body, Controller, Post, HttpCode, Get } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { User, UserData } from 'src/model/user.model';
 
@@ -14,6 +14,11 @@ export class LoginController {
 
   @Post('/register')
   registerSurveySG(@Body() body: UserData): Promise<UserData> {
-    return this.loginService.register(body);
+    return this.loginService.registerSurveySG(body);
+  }
+  
+  @Get('/profile')
+  getOneUserData(name): Promise<UserData> {
+    return this.loginService.registerSurveySG(name);
   }
 }

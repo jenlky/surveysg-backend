@@ -11,8 +11,13 @@ export class LoginService {
     return user.name
   }
 
-  async register(userData: UserData): Promise<UserData> {
-    const result = await this.usersService.saveOne(userData);
+  async registerSurveySG(userData: UserData): Promise<UserData> {
+    const result = await this.usersService.saveOneUserData(userData);
+    return result
+  }
+
+  async getOneUserData(name: string): Promise<UserData> {
+    const result = await this.usersService.getOneUserData(name);
     return result
   }
 }
