@@ -19,6 +19,6 @@ export class LoginController {
   
   @Get('/profile')
   getOneUserData(name): Promise<UserData> {
-    return this.loginService.registerSurveySG(name);
+    return this.loginService.getOneUserData(name);
   }
 }
