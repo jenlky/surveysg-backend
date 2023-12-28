@@ -6,7 +6,7 @@ import { UsersService } from 'src/users/users.service';
 export class LoginService {
   constructor(private usersService: UsersService) {}
 
-  async auth({ password }): Promise<string> {
+  async login({ password }): Promise<string> {
     const user = await this.usersService.findOne(password);
     return user.name
   }

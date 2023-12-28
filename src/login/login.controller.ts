@@ -6,10 +6,10 @@ import { User, UserData } from 'src/model/user.model';
 export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
-  @Post('/auth')
+  @Post('/login')
   @HttpCode(200)
-  auth(@Body() body: User): Promise<string> {
-    return this.loginService.auth(body);
+  login(@Body() body: User): Promise<string> {
+    return this.loginService.login(body);
   }
 
   @Post('/register')
