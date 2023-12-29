@@ -6,8 +6,13 @@ import { UsersService } from 'src/users/users.service';
 export class LoginService {
   constructor(private usersService: UsersService) {}
 
-  async login({ password }): Promise<string> {
-    const user = await this.usersService.findOne(password);
+  login(request: any): string {
+    const { email, password } = request.body
+    const user = this.usersService.findOne(email, password);
+    if (user) {
+      request.session.isLoggedIn = true
+      request.session.email = email
+    }
     return user.name
   }
 
@@ -19,5 +24,15 @@ export class LoginService {
   async getOneUserData(name: string): Promise<UserData> {
     const result = await this.usersService.getOneUserData(name);
     return result
+  }
+
+  logout(request: any, response: any): void {
+    request.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        response.redirect('/login');
+      }
+    })
   }
 }
